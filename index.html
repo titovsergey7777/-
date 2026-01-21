@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ССГ-Салда Строй Групп — Строительство и ремонт в Верхней Салде</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <style>
+        :root {
+            --titanium: #7d7d7d; /* Цвет титана */
+            --accent: #ff9900;    /* Строительный оранжевый */
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --bg-light: #f4f4f4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
+
+        /* 1. Header */
+        header {
+            background: var(--dark);
+            color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.2rem; }
+        .logo svg { width: 40px; fill: var(--titanium); }
+        
+        nav a { color: var(--white); text-decoration: none; margin: 0 15px; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        .header-contacts { text-align: right; }
+        .btn-call { 
+            background: var(--accent); 
+            color: var(--dark); 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://honka.ru/wp-content/uploads/2020/08/Индивидуальные-проекты-домов.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; max-width: 900px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; }
+        .promo-badge { background: var(--accent); color: var(--dark); padding: 10px 20px; border-radius: 50px; font-weight: bold; animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.05);} 100% {transform: scale(1);} }
+
+        /* 3. Services */
+        section { padding: 80px 5%; }
+        h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; position: relative; }
+        h2::after { content: ''; width: 60px; height: 4px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: var(--bg-light); padding: 30px; border-radius: 8px; transition: 0.3s; border-bottom: 4px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .service-card h3 { color: var(--dark); margin-bottom: 15px; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .service-card ul { list-style: none; }
+        .service-card li::before { content: "✓ "; color: var(--accent); font-weight: bold; }
+
+        /* 4. Advantages */
+        .advantages { background: var(--dark); color: var(--white); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; }
+        .adv-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* 5. Portfolio */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .project-card { position: relative; overflow: hidden; border-radius: 8px; height: 300px; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-info { 
+            position: absolute; bottom: 0; background: rgba(0,0,0,0.8); color: white; width: 100%; 
+            padding: 15px; transform: translateY(100%); transition: 0.5s; 
+        }
+        .project-card:hover .project-info { transform: translateY(0); }
+        .project-card:hover img { transform: scale(1.1); }
+
+        /* 6. Calculator */
+        .calc-box { max-width: 600px; margin: 0 auto; background: var(--bg-light); padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        select, input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; }
+
+        /* 7. Footer/Contacts */
+        footer { background: #111; color: #ccc; padding: 50px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .map { height: 300px; width: 100%; background: #333; border-radius: 8px; overflow: hidden; grid-column: span 2; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; }
+            nav { margin: 15px 0; }
+            .hero h1 { font-size: 2rem; }
+            .map { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <svg viewBox="0 0 100 100">
+            <path d="M10 90 L50 10 L90 90 Z M30 90 L30 60 L70 60 L70 90" fill="none" stroke="currentColor" stroke-width="5"/>
+            <circle cx="50" cy="45" r="10" stroke="var(--accent)" stroke-width="3" fill="none"/>
+        </svg>
+        Салда Строй Групп
+    </div>
+    <nav>
+        <a href="#services">Услуги</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#calc">Цены</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-contacts">
+        <div>+7 (995) XXX-XX-XX</div>
+        <button class="btn-call">Заказать бесплатный замер</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="promo-badge">Акция 2026</div><br>
+    <h1>Строительство и ремонт в Верхней и Нижней Салде: от фундамента до чистовой отделки</h1>
+    <p>Работаем по договору, соблюдаем сроки и знаем особенности грунта Салдинского района.</p>
+    <p><strong>«При заказе строительства дома в 2026 году — проект отопления в подарок!»</strong></p>
+</section>
+
+<section id="services">
+    <h2>Наши услуги</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>Строительство домов</h3>
+            <ul>
+                <li>Дома из газобетона и кирпича и бруса</li>
+                <li>Каркасные дома (скандинавская технология)</li>
+                <li>Фундаменты с учетом высоких грунтовых вод</li>
+            </ul>
+        </div>
+        <div class="service-card">
+            <h3>Ремонт квартир</h3>
+            <ul>
+                <li>Капитальный ремонт в «сталинках» и «хрущевках»</li>
+                <li>Дизайнерский ремонт</li>
+                <li>Профессиональная замена электрики и сантехники</li>
+            </ul>
+        </div>
+        <div class="service-card">
+            <h3>Внешняя отделка</h3>
+            <ul>
+                <li>Беседки и мангальные зоны</li>
+                <li>Кровельные работы любой сложности</li>
+                <li>Заборы и благоустройство территории</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="advantages">
+    <div class="adv-item">
+        <i class="fas fa-users"></i>
+        <h4>Местная бригада</h4>
+        <p>Мы работаем в Салде, нас знают соседи, мы всегда на связи.</p>
+    </div>
+    <div class="adv-item">
+        <i class="fas fa-tags"></i>
+        <h4>Скидки на материалы</h4>
+        <p>Партнерские отношения с базами стройматериалов области.</p>
+    </div>
+    <div class="adv-item">
+        <i class="fas fa-video"></i>
+        <h4>Прозрачность</h4>
+        <p>Еженедельные отчеты в WhatsApp/Telegram.</p>
+    </div>
+    <div class="adv-item">
+        <i class="fas fa-microchip"></i>
+        <h4>Технологии 2026</h4>
+        <p>Лазерное сканирование для сметы без ошибок.</p>
+    </div>
+</section>
+
+<section id="portfolio">
+    <h2>Портфолио</h2>
+    <div class="portfolio-grid">
+        <div class="project-card">
+            <img src="https://kskhouse.ru/upload/resize_cache/iblock/b61/800_800_2/csr1179g4vjowwkfoloh30m634sn61qy.jpeg" alt="Коттедж">
+            <div class="project-info">
+                <h4>Каркасный дом по скандинавская технология в Нижней салде</h4>
+                <p>Срок: 5 месяцев. Материал: Дерево.</p>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="https://i16.move.ru/2/3971/9271033243/9271033243_3074a0cc0953b24f47d871a899c55e78.jpg" alt="Ремонт">
+            <div class="project-info">
+                <h4>Ремонт 3-к квартиры по ул. Энгельса</h4>
+                <p>Срок: 45 дней. Дизайнерская отделка.</p>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="https://avatars.mds.yandex.net/i?id=ee6900802c7d2ec2408672ef7abeb8a0da134b3a-10354750-images-thumbs&n=13" alt="Баня">
+            <div class="project-info">
+                <h4>Баня в пос. Северный</h4>
+                <p>Срок: 21 день. Брус 150х150.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="calc">
+    <h2>Калькулятор стоимости</h2>
+    <div class="calc-box">
+        <div class="form-group">
+            <label>Тип работы</label>
+            <select>
+                <option>Ремонт квартиры</option>
+                <option>Строительство дома</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Площадь (м²)</label>
+            <input type="number" placeholder="Введите площадь">
+        </div>
+        <div class="form-group">
+            <label>Материал</label>
+            <select>
+                <option>Кирпич</option>
+                <option>Блок</option>
+                <option>Дерево</option>
+            </select>
+        </div>
+        <button class="btn-call" style="width: 100%; margin: 0;">Получить предварительную смету</button>
+    </div>
+</section>
+
+<footer id="contacts">
+    <div>
+        <h3>ССГ-Салда Строй Групп</h3>
+        <p>Верхняя Салда, работаем по выезду</p>
+        <p>Режим работы: Ежедневно 10:00 - 20:00</p>
+        <p>Тел: +7 (9XX) XXX-XX-XX</p>
+    </div>
+   <!-- Контейнер для карты -->
+<div id="map" style="width: 100%; height: 300px; background: #333; border-radius: 8px; overflow: hidden;"></div>
+
+<!-- Подключение API v3 с вашим ключом f60e5e32-60d5-4c6f-86cd-7cdf540d7702 -->
+<script src="https://api-maps.yandex.ru"></script>
+
+<script>
+    async function initMap() {
+        // Ожидание загрузки модулей API
+        await ymaps3.ready;
+
+        const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker} = ymaps3;
+
+        // Инициализация карты (Верхняя Салда)
+        const map = new YMap(document.getElementById('map'), {
+            location: {
+                center: [60.5517, 58.0447], 
+                zoom: 13
+            }
+        });
+
+        // Добавление обязательных слоев для отображения карты 2026
+        map.addChild(new YMapDefaultSchemeLayer());
+        map.addChild(new YMapDefaultFeaturesLayer());
+
+        // Создание маркера
+        const markerElement = document.createElement('div');
+        markerElement.className = 'map-marker';
+        markerElement.innerHTML = '<i class="fas fa-map-marker-alt" style="color: #ff9900; font-size: 24px;"></i>';
+
+        map.addChild(new YMapMarker({
+            coordinates: [60.5517, 58.0447],
+        }, markerElement));
+    }
+
+    initMap();
+</script>
+            Интерактивная карта Яндекс (г. Верхняя Салда)
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
